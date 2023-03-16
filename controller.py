@@ -16,10 +16,9 @@ class Controller:
 
     def next_card(self):
         self.view.after_cancel(self.flip_timer)
-        print(self.model.set_new_word())
         current_word_de = self.model.set_new_word()["German"]
         self.view.display_german_card(current_word_de)
-        self.view.after(3000, func=self.flip_card)
+        self.flip_timer = self.view.after(3000, func=self.flip_card)
 
     def flip_card(self): # the flip side of the card is in English
         current_word_en = self.model.get_new_word()["English"]
